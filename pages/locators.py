@@ -28,4 +28,4 @@ class BasketPageLocators(object):
     
     #Сообщение "Стоимость корзины теперь составляет" - часть, относящиеся к цене
     cost_basket_xpath = "//div[@id = 'messages']/div/div[@class = 'alertinner ']/p/strong"
-    MESSAGE_BASKET_COST = (By.XPATH, all_cost_xpath)
+    MESSAGE_BASKET_COST = (By.XPATH, cost_basket_xpath)
