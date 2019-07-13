@@ -22,13 +22,19 @@ class ProductPage(BasePage):
         
         #Название продукта совпадет с тем товаром, который добавили
         message_text = self.get_text_element(*BasketPageLocators.MESSAGE_IN_BASKET)
-        
         assert self.PRODUCT_NAME == message_text, "{} not in message {}".format(self.PRODUCT_NAME, message_text)
 
     def should_be_cost_basket_equal_cost_product(self):
         # Сообщение со стоимостью корзины
         assert self.is_element_present(*BasketPageLocators.MESSAGE_BASKET_ALL_COST), "No basket cost reported"
-        #time.sleep(5)
         #Стоимость корзины совпадает с ценой продукта.
         message_basket_cost_text = self.get_text_element(*BasketPageLocators.MESSAGE_BASKET_COST)
         assert self.PRODUCT_COST == message_basket_cost_text, "{} not equal {}".format(self.PRODUCT_COST, message_basket_cost_text)
+
+    def should_not_be_success_message(self):
+        assert self.is_not_element_present(*BasketPageLocators.MESSAGE_IN_BASKET), \
+            "Success message is presented, but should not be"
+
+    def message_is_disappeared(self):
+        assert self.is_disappeared(*BasketPageLocators.MESSAGE_IN_BASKET), \
+            "Success message is presented, but should not be"

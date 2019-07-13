@@ -30,4 +30,3 @@ def test_guest_can_add_product_to_cart(browser, link):
     #Выполнить проверки
     product_page.should_be_message_about_adding()
     product_page.should_be_cost_basket_equal_cost_product()
-

@@ -17,6 +17,8 @@ class ProductPageLocators(object):
     #Кнопка Добавить в корзину
     ADD_TO_BASKET = (By.CSS_SELECTOR, ".btn-add-to-basket")
 
+    SUCCESS_MESSAGE = (By.CSS_SELECTOR, ".message")
+
 class BasketPageLocators(object):
     #Сообщение с названием добавленного товара
     mess_node_xpath = "//div[@id = 'messages' and @style = 'visibility: visible;']/descendant::strong"
