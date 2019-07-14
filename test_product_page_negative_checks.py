@@ -11,9 +11,5 @@ def test_guest_cant_see_success_message(browser):
     page.open()
     product_page = ProductPage(browser, link)
 
-    start = time.time()
     #Проверяем, что нет сообщения об успехе
-    product_page.should_not_be_success_message()
-    finish = time.time()
-    result = finish - start
-    print("Program time: " + str(result) + " seconds.")
+    product_page.should_be_not_success_message()

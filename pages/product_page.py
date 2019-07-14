@@ -1,6 +1,5 @@
 from .base_page import BasePage
 from .locators import ProductPageLocators
-from .locators import BasketPageLocators
 import time
 
 class ProductPage(BasePage):
@@ -16,25 +15,22 @@ class ProductPage(BasePage):
         #Запомнить стоимость продукта - цена + неразрывный пробел + валюта. 
         self.PRODUCT_COST = self.browser.find_element(*ProductPageLocators.PRODUCT_COST_ELEM).text
 
-    def should_be_message_about_adding(self):
-        #Сообщение о добавлении в корзину есть
-        assert self.is_element_present(*BasketPageLocators.MESSAGE_IN_BASKET), "No message added to basket"
-        
-        #Название продукта совпадет с тем товаром, который добавили
-        message_text = self.get_text_element(*BasketPageLocators.MESSAGE_IN_BASKET)
-        assert self.PRODUCT_NAME == message_text, "{} not in message {}".format(self.PRODUCT_NAME, message_text)
-
     def should_be_cost_basket_equal_cost_product(self):
         # Сообщение со стоимостью корзины
-        assert self.is_element_present(*BasketPageLocators.MESSAGE_BASKET_ALL_COST), "No basket cost reported"
+        #time.sleep(60)
+        assert self.is_element_present(*ProductPageLocators.MESSAGE_BASKET_ALL_COST), "No basket cost reported"
         #Стоимость корзины совпадает с ценой продукта.
-        message_basket_cost_text = self.get_text_element(*BasketPageLocators.MESSAGE_BASKET_COST)
+        message_basket_cost_text = self.get_text_element(*ProductPageLocators.MESSAGE_BASKET_COST)
         assert self.PRODUCT_COST == message_basket_cost_text, "{} not equal {}".format(self.PRODUCT_COST, message_basket_cost_text)
 
-    def should_not_be_success_message(self):
-        assert self.is_not_element_present(*BasketPageLocators.MESSAGE_IN_BASKET), \
-            "Success message is presented, but should not be"
+    def should_be_message_about_adding(self):
+        #Сообщение о добавлении в корзину есть
+        #time.sleep(60)
+        assert self.is_element_present(*ProductPageLocators.MESSAGE_IN_BASKET), "No message added to basket"
 
-    def message_is_disappeared(self):
-        assert self.is_disappeared(*BasketPageLocators.MESSAGE_IN_BASKET), \
-            "Success message is presented, but should not be"
+        #Название продукта совпадет с тем товаром, который добавили
+        message_text = self.get_text_element(*ProductPageLocators.MESSAGE_IN_BASKET)
+        assert self.PRODUCT_NAME == message_text, "{} not equal message {}".format(self.PRODUCT_NAME, message_text)
+
+    def should_be_not_success_message(self):
+        assert self.is_not_element_present(*ProductPageLocators.MESSAGE_IN_BASKET), "Should be no message added to basket"
