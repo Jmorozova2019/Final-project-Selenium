@@ -3,6 +3,7 @@ from selenium.webdriver.common.by import By
 class BasePageLocators(object):
     LOGIN_LINK = (By.CSS_SELECTOR, "#login_link")
     LOGIN_LINK_INVALID = (By.CSS_SELECTOR, "#login_link_inc")
+    USER_ICON = (By.CSS_SELECTOR, ".icon-user")
 
     #Кнопка выбора языка
     language_xpath = "//select[@name = 'language']"
@@ -24,6 +25,18 @@ class BasketPageLocators(object):
 class LoginPageLocators(object):
     REGISTRATION_FORM = (By.CSS_SELECTOR, "#register_form")
     LOGIN_FORM = (By.CSS_SELECTOR, "#login_form")
+
+    email_registration_xpath = "//input[@name = 'registration-email']"
+    EMAIL_REGISTRATION = (By.XPATH, email_registration_xpath)
+
+    password_registration_xpath = "//input[@name = 'registration-password1']"
+    PASSWORD_REGISTRATION = (By.XPATH, password_registration_xpath)
+
+    confirm_password_registration_xpath = "//input[@name = 'registration-password2']"
+    CONFIRM_PASSWORD_REGISTRATION = (By.XPATH, confirm_password_registration_xpath)
+
+    btn_register_xpath = "//button[@name = 'registration_submit']"
+    BUTTON_REGISTRATION = (By.XPATH, btn_register_xpath)
 
 class MainPageLocators(object):
     def __init__(self, *args, **kwargs):
